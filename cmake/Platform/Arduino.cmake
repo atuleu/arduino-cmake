@@ -545,16 +545,6 @@ function(GENERATE_AVR_FIRMWARE INPUT_NAME)
     
     required_variables(VARS INPUT_BOARD INPUT_SRCS MSG "must define for target ${INPUT_NAME}")
 
-    if(INPUT_HDRS)
-        set( INPUT_HDRS "SRCS ${INPUT_HDRS}" )
-    endif()
-    if(INPUT_LIBS)
-        set( INPUT_LIBS "LIBS ${INPUT_LIBS}" )
-    endif()
-    if(INPUT_AFLAGS)
-        set( INPUT_AFLAGS "AFLAGS ${INPUT_AFLAGS}" )
-    endif()
-
     generate_arduino_firmware( ${INPUT_NAME} 
         NO_AUTOLIBS
         MANUAL
@@ -563,9 +553,9 @@ function(GENERATE_AVR_FIRMWARE INPUT_NAME)
         PROGRAMMER ${INPUT_PROGRAMMER}
         SERIAL ${INPUT_SERIAL}
         SRCS ${INPUT_SRCS}
-        ${INPUT_HDRS}
-        ${INPUT_LIBS}
-        ${INPUT_AFLAGS} )
+        HDRS ${INPUT_HDRS}
+        LIBS ${INPUT_LIBS}
+        AFLAGS ${INPUT_AFLAGS} )
     
 endfunction()
 
